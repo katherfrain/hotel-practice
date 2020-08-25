@@ -1,6 +1,3 @@
-
-
-
 hotel = {
      '101': {
         'guest': {
@@ -54,7 +51,12 @@ def check_in(room_number, guest_name):
         return hotel
     else:
         print("Nope, no room here")
+        return hotel
 
 check_out('101')
+
+mary = {"Mary Englewood" : ['phone number', 'allergies']}
+
 print(is_vacant('101'))
-print(check_in(109, {"Mary Englewood" : ['phone number', 'allergies']}))
+print(check_in('102', mary))
+print(hotel['102'])
