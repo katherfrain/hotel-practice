@@ -59,15 +59,15 @@ def is_vacant(hotel, room_number):
     try: 
         #if there is a value here, it's because there's a guest staying there!
         if hotel[room_number]:
-            print("Hotel room is full")
+            #print("Hotel room is full")
             return False
         else:
-            print("Hotel room is empty.")
+            #print("Hotel room is empty.")
             return True
             #it's not empty, so is-vacant/is-empty is false, basically
     except KeyError:
         #this gets around the error thrown when Python deals with a Falsey key-value - an empty room.
-        print("Hotel room non-existant.")
+        #print("Hotel room non-existant.")
         return False
         #it is empty so we return true
 
@@ -78,7 +78,7 @@ def check_in(hotel, room_number, guest_name):
         hotel[room_number] = guest_name
         return hotel
     else:
-        print("Nope, no room here")
+        #print("Nope, no room here")
         return hotel
 
 def check_out(hotel, checkoutroom):
@@ -86,7 +86,6 @@ def check_out(hotel, checkoutroom):
     hotel[checkoutroom] = {}
     #this sends back the modified hotel list
     return hotel
-print(check_out(hotels[0], '101'))
 
 while True:
     #this should print a list of empty rooms
@@ -98,9 +97,32 @@ while True:
     print(f'These {emptyrooms} are empty.')
     #this should ask you which empty room you want to stay in
 
-    checkin_name = input("What's your name?")
-    checkin = input("Which room would you like?")
-    check_in(hotels[0], checkin, checkin_name)
+
+    #checkin block - grabs user info and uses that to find them a room
+    checkin_name = input("What's your name? ")
+    checkin = input("Which room would you like? ")
+    hotelnum = int(input("Would you like to stay in hotel 1, 2, or 3? "))
+    check_in(hotels[hotelnum - 1], checkin, checkin_name)
+    print(hotels[hotelnum - 1])
+
+    checkout = input("Which room are you vacating? ")
+    hotelnum = int(input("Are you checking out of hotel 1, 2, or 3? "))
+    check_out(hotels[hotelnum - 1], checkout)
+    print(hotels[hotelnum])
+
+    quitinput = input("Are you finished booking today? [UI improvements by Alison] ")
+    if quitinput == "yes":
+        break
+    else:
+        checkin_name = input("Would you like to check into another room? ")
+        break
+
+
+
+
+
+
+
     """
     for hotel in hotels:
         for room in hotel.keys():
